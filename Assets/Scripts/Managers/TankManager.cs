@@ -11,7 +11,6 @@ public class TankManager
     [HideInInspector] public GameObject m_Instance;          
     [HideInInspector] public int m_Wins;                     
 
-
     private TankMovement m_Movement;       
     private TankShooting m_Shooting;
     private GameObject m_CanvasGameObject;
@@ -36,7 +35,6 @@ public class TankManager
         }
     }
 
-
     public void DisableControl()
     {
         m_Movement.enabled = false;
@@ -55,7 +53,7 @@ public class TankManager
     }
 
 
-    public void Reset()
+	public void Reset()
     {
         m_Instance.transform.position = m_SpawnPoint.position;
         m_Instance.transform.rotation = m_SpawnPoint.rotation;

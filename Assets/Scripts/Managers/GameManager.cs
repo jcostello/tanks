@@ -36,10 +36,12 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {
-            m_Tanks[i].m_Instance =
+			TankManager tank = m_Tanks[i];
+            tank.m_Instance =
                 Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
-            m_Tanks[i].m_PlayerNumber = i + 1;
-            m_Tanks[i].Setup();
+
+            tank.m_PlayerNumber = i + 1;
+            tank.Setup();
         }
     }
 
@@ -179,8 +181,22 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < m_Tanks.Length; i++)
         {
-            m_Tanks[i].Reset();
+			TankManager tank = m_Tanks[i];
+
+			Destroy(tank.m_Instance);
+            tank.m_Instance =
+                Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
+
+			tank.Setup();
         }
+
+		SetCameraTargets();
+		/*
+		GameObject[] parts = GameObject.FindGameObjectsWithTag("TankPart");
+
+		foreach (GameObject part in parts)
+			Destroy(part);
+		*/
     }
 
 
